@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block body_id 'form-index' %}
+
+{% block bodyBase %}
+    {{ parent() }}
+{% endblock bodyBase %}
+
+{% block pageContent %}
+    <div class="ui grid container">
+        <div class="two wide column">
+            <div class="left ui rail">
+                <div class="ui sticky" id="left-buttons">
+                    <div id="health-attribute" class="ui segments">
+                        <div class="ui segment health value">
+                            <div class="ui top attached label">常规类型</div>
+                            <div class="ui grid health-inline-box">
+                                <div class="draggable sixteen wide column fluid ui button" id="button-grid-1">Grid 1</div>
+                                <div class="draggable sixteen wide column fluid ui button" id="button-grid-2">Grid 2-2</div>
+                                <div class="draggable sixteen wide column fluid ui button" id="button-grid-3">Grid 3-3-3</div>
+                                <div class="draggable sixteen wide column fluid ui button" id="button-grid-4">Grid 4-4-4-4</div>
+                                <div class="draggable sixteen wide column fluid ui button" id="button-grid-5">Grid 5-5-5-5-5</div>
+                                <div class="equal width row">
+                                    <div class="draggable column fluid ui button" id="button-text">Text</div>
+                                    <div class="draggable column fluid ui button" id="button-textarea">TextArea</div>
+                                </div>
+                                <div class="equal width row">
+                                    <div class="draggable column fluid ui button" id="button-integer">Integer</div>
+                                    <div class="draggable column fluid ui button" id="button-money">MoneyType</div>
+                                </div>
+                                <div class="equal width row">
+                                    <div class="draggable column fluid ui button" id="button-password">Password</div>
+                                    <div class="draggable column fluid ui button" id="button-date">DateType</div>
+                                </div>
+                                <div class="equal width row">
+                                    <div class="draggable column fluid ui button" id="button-datetime">DateTime</div>
+                                    <div class="draggable column fluid ui button" id="button-checkbox">Checkbox</div>
+                                </div>
+                                <div class="equal width row">
+                                    <div class="draggable column fluid ui button" id="button-radio">Radio</div>
+                                    <div class="draggable column fluid ui button" id="button-file">File</div>
+                                </div>
+                                <div class="equal width row">
+                                    <div class="draggable column fluid ui button" id="button-choice">Choice</div>
+                                    <div class="draggable column fluid ui button" id="button-collection">Collection</div>
+                                </div>
+                                <div class="equal width row">
+                                    <div class="draggable column fluid ui button" id="button-button">Button</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            <form name="form_new" method="post" class="ui form form-horizontal">
+                <div id="form-canvas" class="canvas ui grid">
+                </div>
+            </form>
+            <div class="right ui rail" style="margin-left: 0;padding-left: 0;">
+                <div class="ui sticky" id="right-attribute">
+                    <div id="right-health-attribute" class="ui segments">
+                        <div class="ui segment health value" id="attribute-box">
+                            <div class="ui top attached label">字段属性</div>
+                            <div class="ui grid health-inline-box">
+                                <form class="ui form">
+                                    <div class="field">
+                                        <label>名称</label>
+                                        <input type="text" name="name" placeholder="">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

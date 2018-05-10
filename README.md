@@ -1,4 +1,4 @@
-Sunshine 项目概述
+SunshineOA 项目概述
 ========
 
 ## 本项目处在 Alpha 开发阶段，还处于原始概念开发过程。
@@ -9,13 +9,17 @@ Sunshine 项目概述
 
 ### 技术栈
 
-1. Symfony 3 基础框架 (目前是3.2.7)
+1. Symfony 4
 2. 前端UI
-    * AdminLTE 模板 (Bootstrap)
+    * Semantic UI
+        * https://semantic-ui.com/
+        * how to install Semantic UI with yarn
+            * https://medium.com/@peterbrecska/how-to-install-semantic-ui-by-using-yarn-d78e68afe62b
     * jQuery EasyUI
         * https://www.jeasyui.com/
-        * 用EasyUI的组件作为对 AdminLTE 的补充
-3. 三方 Bundle
+3. TypeScript
+    使用 typescript 代替 javascript 。
+4. 三方 Bundle
   - gedmo/doctrine-extensions (目前使用其中的tree)
     https://github.com/Atlantic18/DoctrineExtensions
   - hautelook/alice-bundle (版本使用了 1.4，而不是 2.0 beta。用于填充初始和示例数据。)
@@ -23,34 +27,23 @@ Sunshine 项目概述
 
 ### 源码目录结构
 
-全部代码在 src 目录下，分为几个 Bundle:
+不再使用多个Bundle的结构，源码在src目录中，用namespace的方式进行适当的分隔:
 
-1. OrganizationBundle 组织、公司、部门、用户等组织机构相关信息功能的包。
+1. Organization 组织、公司、部门、用户等组织机构相关信息功能的包。
 * 组织的概念类似企业集团，能以组织为最大单位划分功能区域，彻底阻隔资源的互相访问。
 * 公司(Company)，这是组织一级下边的独立运营性质的公司实体。
-* 部门以商业单元来区分(BusinessUnit)，它是一个树状的组织形式，可以系统、子系统、事业部、
-  部门、子部门等概念。
+* 部门以商业单元来区分(BusinessUnit)，它是一个树状的组织形式，可以系统、子系统、事业部、部门、子部门等概念。
 * 用户(User)，这是整个OA系统的最小组织单位，也是最终的实际的用户实体。
 * 岗位(Title)，这是用户的岗位、职务名称。
 * 职务级别(ServiceGrade)，这是用户的职务级别，比如总裁、副总裁、总监、部门经理、主管、员工
 * 工作组(WorkGroup)，将用户以分组形式构成工作组，以用于审批、开放特定权限等工作。
-* 组织角色(OrganizationRole) 组织角色指定特定用户为某个组织的某些角色，如组织管理员、表单管理员、
-  人力资源管理员、薪资专员
+* 组织角色(OrganizationRole) 组织角色指定特定用户为某个组织的某些角色，如组织管理员、表单管理员、人力资源管理员、薪资专员
 
-2. ApplicationFormBundle 申请表的格式导入、字段配置、流转流程制定等相关功能的包。
+2. ApplicationForm 申请表的格式导入、字段配置、流转流程制定等相关功能的包。
 * 用户通过后台表单构建器自行制作表单布局，并在表内填充表单控件。
-* 表单管理员在后台导入此文件，程序解析出表格样式和表单控件，通过界面由表单管理员逐一配置每个控件的字段类型，
-  如日期配置为 datetime，数量配置为 int, 文本配置为 string 或 text 。
+* 表单管理员在后台导入此文件，程序解析出表格样式和表单控件，通过界面由表单管理员逐一配置每个控件的字段类型，如日期配置为 datetime，数量配置为 int, 文本配置为 string 或 text 。
 * 再由表单管理员创建表单流程，表单流程由节点、流转条件组成。表单将按照预期的设置进行流转，直到结束节点。
 * 查询、统计。根据配置可对已有表单数据进行查询和统计。
-
-表单构建器概念图
-
-![ApplicationBuilderConception](https://raw.githubusercontent.com/TonyGao/Sunshine/master/app/Resources/Documentation/images/%E8%A1%A8%E5%8D%95%E8%A7%86%E5%9B%BE%E8%AE%BE%E8%AE%A1.png)
-
-3. UIBundle 用户界面相关的包。
-* 本项目将使用 AdminLTE 模板作为 UI 库。
-  https://github.com/almasaeed2010/AdminLTE
 
 ### 任务列表
 
@@ -59,12 +52,11 @@ Sunshine 项目概述
 - [ ] 商业单元管理。让管理员通过后台添加商业单元、维护相关信息。
 - [ ] 岗位管理。让管理员通过后台添加维护岗位信息。
 - [ ] 职务级别管理。让管理员通过后台添加维护职务级别信息。
-- [ ] 用户管理。实现用户登录、密码重置。让管理员通过后台维护用户，实现用户添加、更新信息、停用。
-     实现命令工具添加用户。
+- [ ] 用户管理。实现用户登录、密码重置。让管理员通过后台维护用户，实现用户添加、更新信息、停用。实现命令工具添加用户。
 - [ ] 工作组管理。让管理员通过后台添加维护工作组信息。
 - [ ] 组织角色。让管理员通过后台添加维护组织角色信息。
 
-- [ ] 表单视图构建器。创建 ApplicationFormBundle，在后台完成一个表单后台构建器。
+- [ ] 表单视图构建器。创建 ApplicationForm，在后台完成一个表单后台构建器。
 
 ### 菜单明细
 

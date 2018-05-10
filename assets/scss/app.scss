@@ -1,0 +1,79 @@
+$web-font-path: 'data:text/css;base64,';
+
+@import '~semantic-ui/dist/semantic.css';
+
+// 表单设计器
+.page-content {
+    position: relative;
+    top: 60px;
+}
+
+.health-inline-box {
+    .button { 
+        margin: 5px 5px;
+    }
+
+    .width.row {
+        padding: 7px 0;
+    }
+}
+
+#left-buttons {
+    z-index: 10;
+    position: fixed;
+    top: 60px;
+    left: 320px;
+    width: 200px;
+}
+
+#right-attribute {
+    z-index: 10;
+    margin-top: 13px;
+    width: 200px;
+    position: fixed;
+    top: 45px;
+    right: 9%;
+}
+
+// 表单画布
+#form-canvas {
+    background: -webkit-linear-gradient(left, #3c8dbc 20px, transparent 1%) center, -webkit-linear-gradient(#3c8dbc 20px, transparent 1%) center, #9192fb;
+    background: linear-gradient(90deg, #3c8dbc 20px, transparent 1%) center, linear-gradient(#3c8dbc 20px, transparent 1%) center, #9192fb;
+    background-size: 22px 22px;
+    width: 100%;
+    z-index: 1;
+    min-height: 40px;
+    opacity: 0.9;
+    position: relative;
+    margin: 0;
+
+    .droppable {
+        min-height: 40px;
+        outline: 1px dashed rgba(170,170,170,0.7);
+        padding: 1em;
+    }
+
+    .row {
+        padding: 0;
+    }
+
+    input:hover {
+        cursor: cell;
+    }
+
+    input:focus {
+        border:1px solid red;
+    }
+}
+
+#attribute-box {
+    padding-bottom: 30px;
+}
+
+#form-canvas.ui-state-hover {
+    background-color: yellow;
+}
+
+.ui.form .inline.fields .field > :first-child, .ui.form .inline.field > :first-child {
+    margin: 0;
+}
