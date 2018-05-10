@@ -1,0 +1,29 @@
+Arguments: 
+  /usr/local/Cellar/node/8.9.0/bin/node /usr/local/Cellar/yarn/1.1.0/libexec/bin/yarn.js add semantic-ui
+
+PATH: 
+  /Users/tony/bin/Sencha/Cmd/5.1.0.26:/Users/tony/bin:/usr/local/bin:/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin
+
+Yarn version: 
+  1.1.0
+
+Node version: 
+  8.9.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: connect ETIMEDOUT 104.16.63.173:443
+      at Object._errnoException (util.js:1024:11)
+      at _exceptionWithHostPort (util.js:1046:20)
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1182:14)

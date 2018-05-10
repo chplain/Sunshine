@@ -73,10 +73,27 @@ table.dataTable tbody tr.selected {
     background-color: yellow;
 }
 
+#form-canvas .grid-box.droppable.ui-droppable {
+    padding-top: 0;
+}
+
+.form-group.form-inline {
+    height: 34px;
+}
+
+#form-canvas .form-group.form-inline {
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
 textarea.form-control {
     height: 100px;
 }
 
 .form-inline  .form-control {
-    width:80%;
+    width:100%;
+}
+
+input[type=text] .form-control {
+    margin-top: 3px;
 }

@@ -13,6 +13,4 @@ class CompanySwitchService
     {
         $this->em = $manager;
     }
-
-    public function
 }

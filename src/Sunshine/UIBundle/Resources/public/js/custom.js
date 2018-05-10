@@ -5,7 +5,7 @@ $(function () {
         revert: "valid"
     });
     $("#form-canvas").droppable({
-        accept: "#grid_12_button, #grid_6_button, #grid_4_button, #grid_3_button",
+        accept: "#grid_12_button, #grid_1_button, #grid_6_button, #grid_4_button, #grid_3_button",
         classes: {
             "ui-droppable-active": "ui-state-active",
             "ui-droppable-hover": "ui-state-hover"
@@ -17,6 +17,15 @@ $(function () {
             switch (draggableId) {
                 case "grid_12_button":
                     $("#form-canvas").append('<div class="col-md-12 grid-box droppable" id="test"></div>');
+                    divHeight = divHeight + 40;
+                    $("#form-canvas").css("height", divHeight);
+                    droppableInit();
+                    break;
+                case "grid_1_button":
+                    $("#form-canvas").append(
+                        '<div class="col-md-1 grid-box droppable"></div>'+
+                        '<div class="col-md-11 grid-box droppable"></div>'
+                    );
                     divHeight = divHeight + 40;
                     $("#form-canvas").css("height", divHeight);
                     droppableInit();
