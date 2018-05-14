@@ -22,6 +22,8 @@ $(function () {
                         break;
                 }
 
+                rebindClick();
+
                 $(this)
                     .addClass("ui-state-highlight")
                     ;
@@ -35,20 +37,24 @@ $(function () {
             url: Routing.generate('form_html', { type: type }),
             dateType: "html",
             timeout: 1000,
+            async: false,
             success: function (data) {
-                holder.append(data)
-                $("#form-canvas input").unbind("click");
-                $("#form-canvas input").click(function () {
-                    let id = $(this).attr("id");
-                    let name = $(this).attr("name");
-                    let label = $("label[for='"+ id +"']");
-                    console.log("label: " + label.text());
-                });
+                holder.append(data);
             },
             error: function (XMLHttpRequest) {
 
             }
         })
+    }
+
+    function rebindClick() {
+        $("#form-canvas input").unbind("click");
+        $("#form-canvas input").click(function () {
+            let id = $(this).attr("id");
+            let name = $(this).attr("name");
+            let label = $("label[for='"+ id +"']");
+            console.log("label: " + label.text());
+        });
     }
 
     // #button-text,
@@ -95,7 +101,6 @@ $(function () {
                     );
                     divHeight = divHeight + 40;
                     $("#form-canvas").css("height", divHeight);
-                    droppableInit();
                     break;
                 case "button-grid-2":
                     $("#form-canvas").append(
@@ -106,7 +111,6 @@ $(function () {
                     );
                     divHeight = divHeight + 40;
                     $("#form-canvas").css("height", divHeight);
-                    droppableInit();
                     break;
                 case "button-grid-3":
                     $("#form-canvas").append(
@@ -118,7 +122,6 @@ $(function () {
                     );
                     divHeight = divHeight + 40;
                     $("#form-canvas").css("height", divHeight);
-                    droppableInit();
                     break;
                 case "button-grid-4":
                     $("#form-canvas").append(
@@ -131,7 +134,6 @@ $(function () {
                     );
                     divHeight = divHeight + 40;
                     $("#form-canvas").css("height", divHeight);
-                    droppableInit();
                     break;
                 case "button-grid-5":
                     $("#form-canvas").append(
@@ -145,9 +147,10 @@ $(function () {
                     );
                     divHeight = divHeight + 40;
                     $("#form-canvas").css("height", divHeight);
-                    droppableInit();
                     break;
             }
+
+            droppableInit();
 
             $(this)
                 .addClass("ui-state-highlight")
