@@ -45,7 +45,7 @@ class FormController extends Controller
                 break;
         }
 
-        $id = mt_rand();
+        $id = time();
         $formFull = $this->createFormBuilder()->add($id, $typeClass)->getForm();
         $form = $formFull->get($id);
         return $this->render("form/form/type.html.twig", ['formView' => $form->createView()]);
@@ -58,58 +58,58 @@ class FormController extends Controller
     public function formTest()
     {
         $htmlContent = '
-         <form name="form_new" method="post" class="ui form form-horizontal">
-            <div id="form-canvas" class="canvas ui grid ui-droppable ui-state-highlight">
-                <div class="four column row">
-                    <div class="column droppable ui-droppable ui-state-highlight">
-                        <div>
-                            <label for="form_1041261421" class="required">1041261421</label>
-                            <input type="text" id="form_1041261421" name="form[1041261421]" required="required">
+            <form name="form_new" method="post" class="ui form form-horizontal">
+                <div id="form-canvas" class="canvas ui grid ui-droppable ui-state-highlight">
+                    <div class="four column row">
+                        <div class="column droppable ui-droppable ui-state-highlight">
+                            <label for="form_677097963" class="required">677097963</label>
+                            <input type="text" id="form_677097963" name="form[677097963]" required="required" class="form-field">
+                        </div>
+                        <div class="column droppable ui-droppable ui-state-highlight">
+                            <label for="form_390814800" class="required">390814800</label>
+                            <input type="text" id="form_390814800" name="form[390814800]" required="required" class="form-field">
+                        </div>
+                        <div class="column droppable ui-droppable ui-state-highlight">
+                            <label for="form_40293422" class="required">40293422</label>
+                            <input type="text" id="form_40293422" name="form[40293422]" required="required" class="form-field">
+                        </div>
+                        <div class="column droppable ui-droppable ui-state-highlight">
+                            <label for="form_1935527140" class="required">1935527140</label>
+                            <input type="text" id="form_1935527140" name="form[1935527140]" required="required" class="form-field">
                         </div>
                     </div>
-                    <div class="column droppable ui-droppable ui-state-highlight">
-                        <div>
-                            <label for="form_963218159" class="required">963218159</label>
-                            <input type="text" id="form_963218159" name="form[963218159]" required="required">
+                    <div class="one column row">
+                        <div class="column droppable ui-droppable ui-state-highlight">
+                            <label for="form_2028165558" class="required">2028165558</label>
+                            <textarea id="form_2028165558" name="form[2028165558]" required="required" class="form-field"></textarea>
                         </div>
                     </div>
-                    <div class="column droppable ui-droppable ui-state-highlight">
-                        <div>
-                            <label for="form_1562378445" class="required">1562378445</label>
-                            <input type="text" id="form_1562378445" name="form[1562378445]" required="required">
+                    <div class="two column row">
+                        <div class="column droppable ui-droppable ui-state-highlight">
+                            <label for="form_854522251" class="required">854522251</label>
+                            <input type="text" id="form_854522251" name="form[854522251]" required="required" class="form-field">
+                        </div>
+                        <div class="column droppable ui-droppable ui-state-highlight">
+                            <label for="form_1675967255" class="required">1675967255</label>
+                            <input type="text" id="form_1675967255" name="form[1675967255]" required="required" class="form-field">
                         </div>
                     </div>
-                    <div class="column droppable ui-droppable ui-state-highlight">
-                        <div>
-                            <label for="form_129652884" class="required">129652884</label>
-                            <input type="text" id="form_129652884" name="form[129652884]" required="required">
+                    <div class="one column row">
+                        <div class="column droppable ui-droppable ui-state-highlight">
+                            <label for="form_485221642" class="required">485221642</label>
+                            <textarea id="form_485221642" name="form[485221642]" required="required" class="form-field"></textarea>
                         </div>
                     </div>
                 </div>
-                <div class="one column row">
-                    <div class="column droppable ui-droppable ui-state-highlight">
-                        <div>
-                            <label for="form_1648947770" class="required">1648947770</label>
-                            <textarea id="form_1648947770" name="form[1648947770]" required="required"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+            </form>
         ';
 
         $crawler = new Crawler($htmlContent);
-        $input = $crawler->filter('input');
-        $textArea = $crawler->filter('textarea');
+        $input = $crawler->filter('.form-field');
         foreach($input as $item) {
             dump($item->getAttribute("id"));
             dump($item->getAttribute("name"));
         }
-        
-        foreach($textArea as $item) {
-            dump($item->getAttribute("id"));
-        }
-
         return new Response("test");
     }
 }

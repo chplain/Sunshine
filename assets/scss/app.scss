@@ -64,6 +64,14 @@ $web-font-path: 'data:text/css;base64,';
     input:focus {
         border:1px solid red;
     }
+
+    textarea:hover {
+        cursor: cell;
+    }
+
+    textarea:focus {
+        border:1px solid red;
+    }
 }
 
 #attribute-box {

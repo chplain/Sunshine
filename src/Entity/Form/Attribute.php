@@ -28,12 +28,37 @@ class Attribute
      */
     private $id;
 
+    /**
+     * 字段名称
+     * @var string
+     */
+    private $name;
+
+    /**
+     * 字段编码
+     * @var string
+     */
     private $code;
 
+    /**
+     * 字段类型
+     * @var Options
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Admin\Options")
+     * @ORM\JoinColumn(name="type", referencedColumnName="id", onDelete="SET NULL", nullable=true)
+     */
     private $type;
 
+    /**
+     * 存储类型
+     * @var string
+     */
     private $storageType;
 
+    /**
+     * 排序位置
+     * @var int
+     */
     private $position;
 
     public function getId()

@@ -47,13 +47,23 @@ $(function () {
         })
     }
 
+    let currentLabel;
+
     function rebindClick() {
-        $("#form-canvas input").unbind("click");
-        $("#form-canvas input").click(function () {
+        $(".form-field").unbind("click");
+        $(".form-field").click(function () {
             let id = $(this).attr("id");
             let name = $(this).attr("name");
             let label = $("label[for='"+ id +"']");
+            currentLabel = label;
             console.log("label: " + label.text());
+            $("#name").val(label.text());
+        });
+
+        $("#name").unbind('change').on("change", function(event) {
+            console.log(currentLabel.text());
+            currentLabel.text($("#name").val());
+            return false;
         });
     }
 
