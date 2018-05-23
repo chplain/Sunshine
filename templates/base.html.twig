@@ -13,17 +13,19 @@
     </head>
     <body id="{% block body_id %}{% endblock %}">
         {% block bodyBase %}
-            <div class="ui large top fixed hidden menu">
-                <a class="active item">表单管理</a>
-                <div class="right menu">
-                    <div class="item">
-                        <a class="ui button">Log in</a>
-                    </div>
-                    <div class="item">
-                        <a class="ui primary button">Sign Up</a>
+            {% block topRightMenu %}
+                <div class="ui large top fixed hidden menu">
+                    <a class="active item">表单管理</a>
+                    <div class="right menu">
+                        <div class="item">
+                            <a class="ui button">Log in</a>
+                        </div>
+                        <div class="item">
+                            <a class="ui primary button">Sign Up</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endblock %}
             <div class="page-content">
                 {% block pageContent %}
                 {% endblock %}

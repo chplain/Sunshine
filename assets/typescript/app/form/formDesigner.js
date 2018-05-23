@@ -62,8 +62,10 @@ $(function () {
 
         $("#name").unbind('change').on("change", function(event) {
             console.log(currentLabel.text());
-            currentLabel.text($("#name").val());
-            return false;
+            let name = $("#name").val();
+            currentLabel.text(name);
+            let id = "#"+currentLabel.attr("for");
+            $(id).attr("field-name", name);
         });
     }
 
@@ -168,5 +170,10 @@ $(function () {
                 .html("drag id:" + draggableId + " drop id:" + droppableId)
                 ;
         }
+    });
+
+    $("#save").on("click", function () {
+       let formHtml = $("#form-container").html();
+       console.log(formHtml);
     });
 });

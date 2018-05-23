@@ -6,6 +6,23 @@
     {{ parent() }}
 {% endblock bodyBase %}
 
+{% block topRightMenu %}
+    <div class="ui large top fixed hidden menu">
+        <a class="active item">表单管理</a>
+        <div class="right menu">
+            <div class="item">
+                <a class="ui button" id="save">保存</a>
+            </div>
+            <div class="item">
+                <a class="ui button">Log in</a>
+            </div>
+            <div class="item">
+                <a class="ui primary button">Sign Up</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block pageContent %}
     <div class="ui grid container">
         <div class="two wide column">
@@ -54,10 +71,12 @@
             </div>
         </div>
         <div class="fourteen wide column">
-            <form name="form_new" method="post" class="ui form form-horizontal">
-                <div id="form-canvas" class="canvas ui grid">
-                </div>
-            </form>
+            <div id="form-container">
+                <form name="form-new" method="post" class="ui form form-horizontal">
+                    <div id="form-canvas" class="canvas ui grid">
+                    </div>
+                </form>
+            </div>
             <div class="right ui rail" style="margin-left: 0;padding-left: 0;">
                 <div class="ui sticky" id="right-attribute">
                     <div id="right-health-attribute" class="ui segments">
