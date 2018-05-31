@@ -2,13 +2,16 @@
 
 namespace App\Controller\Form;
 
+use App\Entity\Form\Attribute;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\DomCrawler\Crawler;
-
+use App\Entity\Form\Form;
 /**
  * Class FormController
  * @package App\Controller\Form
@@ -49,6 +52,45 @@ class FormController extends Controller
         $formFull = $this->createFormBuilder()->add($id, $typeClass)->getForm();
         $form = $formFull->get($id);
         return $this->render("form/form/type.html.twig", ['formView' => $form->createView()]);
+    }
+
+    /**
+     * 通过Ajax提交创建的表单
+     * @Route("/ajax/save", options={"expose"=true}, name="form_save")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function saveForm(Request $request)
+    {
+        $json = $request->getContent();
+        $em = $this->getDoctrine()->getManager();
+
+        if ($json) {
+            $formHtml = json_decode($json, true);
+            $formName = $formHtml['formName'];
+
+            $form = new Form();
+            $form->setName($formName);
+            $em->persist($form);
+
+            $crawler = new Crawler($formHtml['content']);
+            $input = $crawler->filter('.form-field');
+            foreach($input as $item) {
+                dump($formName);
+                dump($item->getAttribute("id"));
+                $fieldName = $item->getAttribute("name");
+                $code =
+                dump($fieldName);
+                dump($item->getAttribute("field-name"));
+
+                $attribute = new Attribute();
+                $attribute->setName($fieldName)
+                    ->setCode()
+            }
+        }
+
+        $response  = ['status' => 'true'];
+        return new JsonResponse($response);
     }
 
     /**

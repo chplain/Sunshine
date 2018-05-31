@@ -5,6 +5,7 @@ namespace App\Entity\Form;
 use App\Entity\Admin\Options;
 use App\Entity\GedmoTrait;
 use App\Entity\Organization\User;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -63,6 +64,19 @@ class Form
      * @ORM\JoinColumn(name="state", referencedColumnName="id", onDelete="SET NULL", nullable=true)
      */
     private $state;
+
+    /**
+     * @var Attribute[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Form\Attribute", mappedBy="form", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OrderBy({"createdAt" = "DESC"})
+     */
+    private $attributes;
+
+    public function __construct()
+    {
+        $this->attributes = new ArrayCollection();
+    }
 
     //    ,----..                                                         ___
     //    /   /   \                                                      ,--.'|_                  ,---,
@@ -128,6 +142,37 @@ class Form
     public function setState(?Options $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Attribute[]
+     */
+    public function getAttributes(): Collection
+    {
+        return $this->attributes;
+    }
+
+    public function addAttribute(Attribute $attribute): self
+    {
+        if (!$this->attributes->contains($attribute)) {
+            $this->attributes[] = $attribute;
+            $attribute->setForm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAttribute(Attribute $attribute): self
+    {
+        if ($this->attributes->contains($attribute)) {
+            $this->attributes->removeElement($attribute);
+            // set the owning side to null (unless already changed)
+            if ($attribute->getForm() === $this) {
+                $attribute->setForm(null);
+            }
+        }
 
         return $this;
     }

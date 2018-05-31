@@ -85,3 +85,16 @@ $web-font-path: 'data:text/css;base64,';
 .ui.form .inline.fields .field > :first-child, .ui.form .inline.field > :first-child {
     margin: 0;
 }
+// 表单题目
+#form-name-div {
+    border-bottom: #4c99c3;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    top: 5px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    left: 30%;
+    input {
+        text-align: center;
+    }
+}

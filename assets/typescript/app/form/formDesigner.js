@@ -174,6 +174,22 @@ $(function () {
 
     $("#save").on("click", function () {
        let formHtml = $("#form-container").html();
+       let formName = $("#form-name").val();
        console.log(formHtml);
+
+        $.ajax({
+            type: "post",
+            url: Routing.generate('form_save'),
+            async: false, // 使用同步方式
+            data: JSON.stringify({
+                content: formHtml,
+                formName: formName
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log("表单提交成功");
+            }
+        });
     });
 });
