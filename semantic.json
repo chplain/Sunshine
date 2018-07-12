@@ -3,10 +3,10 @@
   "version": "2.3.1",
   "paths": {
     "source": {
-      "config": "src/theme.config",
-      "definitions": "src/definitions/",
-      "site": "src/site/",
-      "themes": "src/themes/"
+      "config": "dist/src/theme.config",
+      "definitions": "dist/src/definitions/",
+      "site": "dist/src/site/",
+      "themes": "dist/src/themes/"
     },
     "output": {
       "packaged": "dist/",

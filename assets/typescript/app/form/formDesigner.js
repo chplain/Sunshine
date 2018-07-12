@@ -58,6 +58,14 @@ $(function () {
             currentLabel = label;
             console.log("label: " + label.text());
             $("#name").val(label.text());
+            $("#delete-form-button").unbind('click').on("click", function (event) {
+                let currentNumber = currentLabel.text();
+                let textSelector = "#form_"+currentNumber;
+                let labelSelector = "label[for='"+"form_"+currentNumber+"']";
+                console.log("labelSelector: "+labelSelector);
+                $(textSelector).remove();
+                $(labelSelector).remove();
+            })
         });
 
         $("#name").unbind('change').on("change", function(event) {

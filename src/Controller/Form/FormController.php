@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\DomCrawler\Crawler;
 use App\Entity\Form\Form;
+use App\Component\Attribute\AttributeValueInterface;
+
 /**
  * Class FormController
  * @package App\Controller\Form
@@ -75,17 +77,30 @@ class FormController extends Controller
 
             $crawler = new Crawler($formHtml['content']);
             $input = $crawler->filter('.form-field');
+            $position = 0;
             foreach($input as $item) {
-                dump($formName);
-                dump($item->getAttribute("id"));
+                $position++;
+                $fieldType = $item->nodeName;
+                $fieldId = $item->getAttribute("id");
                 $fieldName = $item->getAttribute("name");
-                $code =
-                dump($fieldName);
-                dump($item->getAttribute("field-name"));
+                $code = substr($fieldId, -10);
 
+                dump(
+                    "form name: ".$formName
+                    . " field id(name): ".$fieldId
+                    ." code: ".$code
+                    ." field name: ".$fieldName
+                    ." field-name: ".$item->getAttribute("field-name")
+                    ." field type: ". $fieldType
+                    ." position: " . $position
+                );
+
+                if ($fieldType === 'input') {
+                    $type = AttributeValueInterface::STORAGE_Text;
+                }
                 $attribute = new Attribute();
-                $attribute->setName($fieldName)
-                    ->setCode()
+                $attribute->setName($fieldId)
+                    ->setCode($code);
             }
         }
 
