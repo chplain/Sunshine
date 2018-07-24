@@ -4,9 +4,12 @@ namespace App\Component\Attribute;
 
 interface AttributeValueInterface
 {
-    public const STORAGE_Text = 'TextType';
-    public const STORAGE_TEXTAREA = 'TextareaType';
-    public const STORAGE_BOOLEAN = 'ChoiceType';
-    public const STORAGE_DATE = 'DateType';
-    public const STORAGE_INTEGER = 'IntegerType';
+    public const FORM_TEXT = 'TextType';
+    public const FORM_TEXTAREA = 'TextareaType';
+    public const FORM_BOOLEAN = 'ChoiceType';
+    public const FORM_DATE = 'DateType';
+    public const FORM_INTEGER = 'IntegerType';
+
+    public const STORAGE_TEXT = 'string';
+    public const STORAGE_TEXTAREA = 'text';
 }

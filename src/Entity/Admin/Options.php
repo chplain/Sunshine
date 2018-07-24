@@ -17,6 +17,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Options
 {
+    use GedmoTrait;
+
     /**
      * @var int
      *

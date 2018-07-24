@@ -25,4 +25,25 @@ trait GedmoTrait
      * 增加 createdBy, updatedBy 字段
      */
     use BlameableEntity;
+
+    /**
+     * Pre persist event listener
+     *
+     * @ORM\PrePersist
+     */
+    public function beforeSave()
+    {
+        $this->createdAt = new \DateTime('now', new \DateTimeZone('UTC'));
+        $this->updatedAt = new \DateTime('now', new \DateTimeZone('UTC'));
+    }
+
+    /**
+     * Pre update event listener
+     *
+     * @ORM\PreUpdate
+     */
+    public function beforeUpdate()
+    {
+        $this->updatedAt = new \DateTime('now', new \DateTimeZone('UTC'));
+    }
 }

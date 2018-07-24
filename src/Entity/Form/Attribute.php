@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="sunshine_form_attribute", options={"collate"="utf8mb4_unicode_ci", "charset"="utf8mb4"})
  * @ORM\Entity(repositoryClass="App\Repository\Form\AttributeRepository")
  * @ORM\HasLifecycleCallbacks()
- * @Gedmo\SoftDeleteable(fieldName="deleteAt", timeAware=false)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @Gedmo\Loggable
  */
 class Attribute
@@ -75,6 +75,15 @@ class Attribute
      * @ORM\JoinColumn(name="form", referencedColumnName="id", onDelete="SET NULL")
      */
     private $form;
+
+    /**
+     * 构造函数
+     * 初始化属性为Collection
+     */
+    public function __construct()
+    {
+        $this->attributes = new ArrayCollection();
+    }
 
     //    ,----..                                                         ___
     //    /   /   \                                                      ,--.'|_                  ,---,

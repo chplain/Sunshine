@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\DomCrawler\Crawler;
 use App\Entity\Form\Form;
 use App\Component\Attribute\AttributeValueInterface;
+use App\Entity\Admin\Options;
 
 /**
  * Class FormController
@@ -66,6 +67,7 @@ class FormController extends Controller
     {
         $json = $request->getContent();
         $em = $this->getDoctrine()->getManager();
+        $optionsRepo = $em->getRepository(Options::class);
 
         if ($json) {
             $formHtml = json_decode($json, true);
@@ -78,30 +80,44 @@ class FormController extends Controller
             $crawler = new Crawler($formHtml['content']);
             $input = $crawler->filter('.form-field');
             $position = 0;
-            foreach($input as $item) {
+            foreach ($input as $item) {
                 $position++;
                 $fieldType = $item->nodeName;
                 $fieldId = $item->getAttribute("id");
-                $fieldName = $item->getAttribute("name");
+                $field = $item->getAttribute("fieldName");
+                $fieldName = $item->getAttribute("field-name");
                 $code = substr($fieldId, -10);
 
                 dump(
                     "form name: ".$formName
                     . " field id(name): ".$fieldId
                     ." code: ".$code
-                    ." field name: ".$fieldName
+                    ." field name: ".$field
                     ." field-name: ".$item->getAttribute("field-name")
                     ." field type: ". $fieldType
                     ." position: " . $position
                 );
 
                 if ($fieldType === 'input') {
-                    $type = AttributeValueInterface::STORAGE_Text;
+                    $typeName = AttributeValueInterface::FORM_TEXT;
+                    $storageType = AttributeValueInterface::STORAGE_TEXT;
                 }
+
+                $type = $optionsRepo->findOneBy(["displayName" => $typeName]);
+
                 $attribute = new Attribute();
-                $attribute->setName($fieldId)
-                    ->setCode($code);
+                $attribute->setName($fieldName)
+                    ->setCode($code)
+                    ->setType($type)
+                    ->setStorageType($storageType)
+                    ->setPosition($position)
+                    ->setForm($form)
+                ;
+
+                $em->persist($attribute);
             }
+
+            $em->flush();
         }
 
         $response  = ['status' => 'true'];
@@ -163,7 +179,7 @@ class FormController extends Controller
 
         $crawler = new Crawler($htmlContent);
         $input = $crawler->filter('.form-field');
-        foreach($input as $item) {
+        foreach ($input as $item) {
             dump($item->getAttribute("id"));
             dump($item->getAttribute("name"));
         }
