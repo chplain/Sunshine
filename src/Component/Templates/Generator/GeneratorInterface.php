@@ -7,5 +7,5 @@ namespace App\Component\Templates\Generator;
  */
 interface GeneratorInterface
 {
-    public function generate(): void;
+    public function generate($target, $content): void;
 }

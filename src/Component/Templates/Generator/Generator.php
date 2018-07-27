@@ -9,15 +9,8 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
  * Reference from SensioGeneratorBundle and MakeBundle, Thank you all:)
  * 参考了 SensioGeneratorBundle 和 MakeBundle，谢谢你们:)
  */
-class Generator extends GeneratorInterface
+class Generator implements GeneratorInterface
 {
-    private $fileManager;
-
-    public function generate(): void
-    {
-        
-    }
-
     /**
      * Render temlpate with parameter
      * 用指定参数渲染模板
@@ -35,24 +28,26 @@ class Generator extends GeneratorInterface
      */
     protected function renderFile($template, $target, $parameters)
     {
-        self::mkdir(dirname($target));
-        return self::dump($target, $this->render($template, $parameters));
+        return $this->generate($target, $this->render($template, $parameters));
     }
 
     /**
      * Create the specific directory
      * 创建指定的目录
      */
-    protected static function mkdir($dir): void
+    public function generate($target, $content): void
     {
         $fs = new Filesystem();
-        if (!$fs->exists($fullPath)) {
+        $path = dirname($target);
+        if (!$fs->exists($path)) {
             try {
-                $fs->mkdir($fullPath);
+                $fs->mkdir($path);
             } catch (IOExceptionInterface $e) {
                 echo "An error occurred while creating your directory at ".$e->getPath();
             }
         }
+
+        $fs->dumpFile($target, $content);
     }
 
     /**
