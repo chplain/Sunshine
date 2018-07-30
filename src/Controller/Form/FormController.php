@@ -14,6 +14,7 @@ use Symfony\Component\DomCrawler\Crawler;
 use App\Entity\Form\Form;
 use App\Component\Attribute\AttributeValueInterface;
 use App\Entity\Admin\Options;
+use App\Component\Templates\Generator\Generator;
 
 /**
  * Class FormController
@@ -78,6 +79,9 @@ class FormController extends Controller
             $em->persist($form);
 
             $crawler = new Crawler($formHtml['content']);
+
+            $generator = new Generator("hello");
+
             $input = $crawler->filter('.form-field');
             $position = 0;
             foreach ($input as $item) {

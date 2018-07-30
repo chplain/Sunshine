@@ -11,13 +11,31 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
  */
 class Generator implements GeneratorInterface
 {
+    private $formName;
+    private $skeletonDirs;
+    private $rootDir;
+
+    /**
+     * 构造器
+     *
+     * @param String $formName 表单名称
+     */
+    public function __construct($formName, $rootDir)
+    {
+        $this->formName = $formName;
+        $this->rootDir = $rootDir;
+
+        dump($this->formName);
+        dump($this->rootDir);
+    }
+
     /**
      * Render temlpate with parameter
      * 用指定参数渲染模板
      */
     protected function render($template, $parameter)
     {
-        $twig = $this->getTwigEnviroment();
+        $twig = $this->getTwigEnvironment();
 
         return $twig->render($template, $parameter);
     }
@@ -35,7 +53,7 @@ class Generator implements GeneratorInterface
      * Create the specific directory
      * 创建指定的目录
      */
-    public function generate($target, $content): void
+    public function generate($target, $content)
     {
         $fs = new Filesystem();
         $path = dirname($target);
@@ -43,7 +61,7 @@ class Generator implements GeneratorInterface
             try {
                 $fs->mkdir($path);
             } catch (IOExceptionInterface $e) {
-                echo "An error occurred while creating your directory at ".$e->getPath();
+                return new \Exception("An error occurred while creating your directory at ".$e->getPath());
             }
         }
 

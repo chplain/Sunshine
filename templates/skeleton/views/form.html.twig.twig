@@ -1,0 +1,41 @@
+{% block extends %}
+{{ "{% extends 'base.html.twig' %}" }}
+{% endblock extends %}
+
+{{ "{% block bodyBase %}" }}
+    {{ '{{ parent() }}' }}
+{{ "{% endblock bodyBase %}" }}
+
+{{ "{% block topRightMenu %}" }}
+    <div class="ui large top fixed hidden menu">
+        <a class="active item">表单管理</a>
+        <div class="right menu">
+            <div class="item">
+                <a class="ui button" id="save">保存</a>
+            </div>
+            <div class="item">
+                <a class="ui button">Log in</a>
+            </div>
+            <div class="item">
+                <a class="ui primary button">Sign Up</a>
+            </div>
+        </div>
+    </div>
+{{ "{% endblock topRightMenu %}" }}
+
+{{ "{% block pageContent %}" }}
+    <div class="ui grid container">
+        <div class="two wide column">
+            <div class="left ui rail">
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            <div class="ui transparent huge input" id="form-name-div">
+                {{ form.name }}
+            </div>
+            <div id="form-container">
+                {{ form.content }}
+            </div>
+        </div>
+    </div>
+{{ "{% endblock pageContent %}" }}
